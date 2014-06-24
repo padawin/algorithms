@@ -1,0 +1,3 @@
+# Algorithms
+
+Implementations of some classic algorithms. No other purpose than for training...
