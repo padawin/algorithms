@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void display_heap(int *heap, int heap_size);
 int add_to_heap(int *heap, int heap_max_size, int heap_size, int element);
 
 int main(int argc, char *argv[]) {
@@ -13,9 +14,19 @@ int main(int argc, char *argv[]) {
 		add_to_heap(collection, heap_max_size, i - 1, atoi(argv[i]));
 	}
 
+	//display the array
+	display_heap(collection, heap_max_size);
 
 	free(collection);
 	return 1;
+}
+
+void display_heap(int *heap, int heap_size) {
+	int i;
+
+	for (i = 0; i < heap_size; ++i) {
+		printf("%d\n", heap[i]);
+	}
 }
 
 int add_to_heap(int *heap, int heap_max_size, int heap_size, int element) {
