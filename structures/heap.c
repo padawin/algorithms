@@ -3,6 +3,7 @@
 
 void display_heap(int *heap, int heap_size);
 int add_to_heap(int *heap, int heap_max_size, int heap_size, int element);
+int remove_from_heap(int *heap, int heap_size, int index_to_remove);
 
 int main(int argc, char *argv[]) {
 	int *collection,
@@ -15,6 +16,9 @@ int main(int argc, char *argv[]) {
 	}
 
 	//display the array
+	display_heap(collection, heap_max_size);
+
+	heap_max_size = remove_from_heap(collection, heap_max_size, 0);
 	display_heap(collection, heap_max_size);
 
 	free(collection);
@@ -54,4 +58,37 @@ int add_to_heap(int *heap, int heap_max_size, int heap_size, int element) {
 		i = parent;
 	}
 	return 1;
+}
+
+int remove_from_heap(int *heap, int heap_size, int index_to_remove) {
+	if (index_to_remove >= heap_size) {
+		return -1;
+	}
+
+	short int must_go_down = 1;
+	int tmp, left, right;
+
+	--heap_size;
+	heap[index_to_remove] = heap[heap_size];
+	heap = realloc(heap, (heap_size) * sizeof(int));
+
+	while (must_go_down == 1) {
+		left = 2 * index_to_remove + 1;
+		right = 2 * index_to_remove + 2;
+		if (left < heap_size && heap[index_to_remove] < heap[left]) {
+			tmp = heap[index_to_remove];
+			heap[index_to_remove] = heap[left];
+			heap[left] = tmp;
+		}
+		else if (right < heap_size && heap[index_to_remove] < heap[right]) {
+			tmp = heap[index_to_remove];
+			heap[index_to_remove] = heap[right];
+			heap[right] = tmp;
+		}
+		else {
+			must_go_down = 0;
+		}
+	}
+
+	return heap_size;
 }
