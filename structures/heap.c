@@ -29,8 +29,9 @@ void display_heap(int *heap, int heap_size) {
 	int i;
 
 	for (i = 0; i < heap_size; ++i) {
-		printf("%d\n", heap[i]);
+		printf("%d ", heap[i]);
 	}
+	printf("\n");
 }
 
 int add_to_heap(int *heap, int heap_max_size, int heap_size, int element) {
