@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
 
 	nbElements = argc-2;
 	collection = (int*) malloc(nbElements * sizeof(int));
-	for (i = 2; i < argc; i++) {
+	for (i = 2; i < argc; ++i) {
 		collection[i - 2] = atoi(argv[i]);
 	}
 
