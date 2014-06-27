@@ -50,7 +50,7 @@ int add_to_heap(int *heap, int heap_max_size, int heap_size, int element) {
 
 	i = heap_size;
 	while (i > 0) {
-		parent = (i - 1) / 2;
+		parent = (i - 1) >> 1;
 		if (heap[i] > heap[parent]) {
 			tmp = heap[i];
 			heap[i] = heap[parent];
@@ -74,8 +74,8 @@ int remove_from_heap(int *heap, int heap_size, int index_to_remove) {
 	heap = realloc(heap, (heap_size) * sizeof(int));
 
 	while (must_go_down == 1) {
-		left = 2 * index_to_remove + 1;
-		right = 2 * index_to_remove + 2;
+		left = (index_to_remove << 1) + 1;
+		right = (index_to_remove << 1) + 2;
 		if (left < heap_size && heap[index_to_remove] < heap[left]) {
 			tmp = heap[index_to_remove];
 			heap[index_to_remove] = heap[left];
